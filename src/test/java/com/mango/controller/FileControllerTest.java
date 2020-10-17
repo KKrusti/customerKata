@@ -1,5 +1,6 @@
 package com.mango.controller;
 
+import com.mango.exceptions.MaximumSlogansException;
 import com.mango.model.User;
 import com.mango.service.FileService;
 import com.mango.service.UserService;
@@ -22,7 +23,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(UserController.class)
+@WebMvcTest(FileController.class)
 public class FileControllerTest {
 
 	@MockBean
@@ -32,16 +33,16 @@ public class FileControllerTest {
 	private MockMvc mvc;
 
 	@Test
-	public void withNoMaxSlogans_upload_uploaded(){
+	public void withNoMaxSlogans_upload_uploaded() throws Exception {
 		MockMultipartFile file = new MockMultipartFile("user-file", "test.txt",
 			null, "test data".getBytes());
+		String response = "File uploaded successfully";
 
-//
-//		when(mockFileService.uploadFile(file)).thenReturn(file);
-//
-//		mvc.perform(post("/v1/users")
-//			.contentType(MediaType.APPLICATION_JSON)
-//			.content(createdUserInJson(user)))
-//			.andExpect(status().isCreated());
+		when(mockFileService.uploadFile(file)).thenReturn(response);
+
+		mvc.perform(post("/v1/files/upload")
+			.contentType(MediaType.APPLICATION_JSON)
+			.content("File uploaded successfully"))
+			.andExpect(status().isOk());
 	}
 }
