@@ -30,16 +30,16 @@ public class UserServiceTest {
 
 	@Test
 	public void withUser_create_userCreated(){
-		User user = new User(USER_ID,"foo", "bar", "DummyStreet", "Montornes", "foobar@mango.com" );
+		User user = new User(USER_ID,"foo", "bar", "DummyStreet", "Montornes", "foobar@customerKata.com" );
 		User createdUser = userService.create(user);
 		Assertions.assertEquals(createdUser, user);
 	}
 
 	@Test
 	public void withUser_update_userUpdated(){
-		User user = new User(USER_ID,"foo", "bar", "DummyStreet", "Montornes", "foobar@mango.com" );
+		User user = new User(USER_ID,"foo", "bar", "DummyStreet", "Montornes", "foobar@customerKata.com" );
 		User createdUser = userService.create(user);
-		user = new User(USER_ID,"foo", "bar", "DummyStreet", "PalauSolita", "foobar@mango.com" );
+		user = new User(USER_ID,"foo", "bar", "DummyStreet", "PalauSolita", "foobar@customerKata.com" );
 
 		User updatedUser = userService.update(user);
 		Assertions.assertNotEquals(updatedUser, createdUser);

@@ -32,7 +32,7 @@ public class UserControllerTest {
 
 	@Test
 	public void withUserData_createUser_userCreated() throws Exception{
-		User user = new User(USER_ID,"foo", "bar", "DummyStreet", "Montornes", "foobar@mango.com" );
+		User user = new User(USER_ID,"foo", "bar", "DummyStreet", "Montornes", "foobar@customerKata.com" );
 
 		when(mockUserService.create(user)).thenReturn(user);
 
@@ -44,7 +44,7 @@ public class UserControllerTest {
 
 	@Test
 	public void withUserData_updateUser_userUpdated() throws Exception {
-		User user = new User(USER_ID,"foo", "bar", "DummyStreet", "Montornes2", "foobar@mango.com" );
+		User user = new User(USER_ID,"foo", "bar", "DummyStreet", "Montornes2", "foobar@customerKata.com" );
 
 		when(mockUserService.update(user)).thenReturn(user);
 
