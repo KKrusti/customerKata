@@ -5,16 +5,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Id;
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
 
-	@Id
-	private int id;
+	private Long id;
 	private String name;
 	private String surname;
 	private String street;

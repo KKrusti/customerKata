@@ -19,13 +19,13 @@ public class UserController {
 
 	@PostMapping
 	public ResponseEntity<User> createUser(@RequestBody User user){
-		User createdUser = userService.create(user);
+		User createdUser = userService.saveOrUpdate(user);
 		return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
 	}
 
 	@PutMapping
 	public ResponseEntity<User> updateUser(@RequestBody User user) {
-		User updatedUser = userService.update(user);
+		var updatedUser = userService.saveOrUpdate(user);
 		return ResponseEntity.ok(updatedUser);
 	}
 }

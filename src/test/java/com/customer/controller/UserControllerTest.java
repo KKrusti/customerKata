@@ -1,5 +1,6 @@
 package com.customer.controller;
 
+import com.customer.data.TestData;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.customer.model.User;
@@ -28,13 +29,11 @@ public class UserControllerTest {
 	@Autowired
 	private MockMvc mvc;
 
-	private static final int USER_ID = 1;
-
 	@Test
 	public void withUserData_createUser_userCreated() throws Exception{
-		User user = new User(USER_ID,"foo", "bar", "DummyStreet", "Montornes", "foobar@customerKata.com" );
+		User user = TestData.getUser();
 
-		when(mockUserService.create(user)).thenReturn(user);
+		when(mockUserService.saveOrUpdate(user)).thenReturn(user);
 
 		mvc.perform(post("/v1/users")
 			.contentType(MediaType.APPLICATION_JSON)
@@ -44,9 +43,10 @@ public class UserControllerTest {
 
 	@Test
 	public void withUserData_updateUser_userUpdated() throws Exception {
-		User user = new User(USER_ID,"foo", "bar", "DummyStreet", "Montornes2", "foobar@customerKata.com" );
+		var user = TestData.getUser();
+		user.setCity("new city");
 
-		when(mockUserService.update(user)).thenReturn(user);
+		when(mockUserService.saveOrUpdate(user)).thenReturn(user);
 
 		mvc.perform(put("/v1/users")
 			.contentType(MediaType.APPLICATION_JSON)
