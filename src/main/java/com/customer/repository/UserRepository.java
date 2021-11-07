@@ -1,6 +1,6 @@
-package com.mango.repository;
+package com.customer.repository;
 
-import com.mango.model.User;
+import com.customer.model.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;

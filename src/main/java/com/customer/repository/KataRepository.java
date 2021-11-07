@@ -1,4 +1,4 @@
-package com.mango.repository;
+package com.customer.repository;
 
 import org.springframework.stereotype.Repository;
 

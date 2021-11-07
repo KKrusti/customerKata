@@ -1,4 +1,4 @@
-package com.mango.exceptions;
+package com.customer.exceptions;
 
 public class MaximumSlogansException extends Exception{
 }

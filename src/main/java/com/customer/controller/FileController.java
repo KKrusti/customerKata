@@ -1,9 +1,8 @@
-package com.mango.controller;
+package com.customer.controller;
 
-import com.mango.exceptions.MaximumSlogansException;
-import com.mango.service.FileService;
+import com.customer.exceptions.MaximumSlogansException;
+import com.customer.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,8 +15,11 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping(value = "/v1/files", produces = MediaType.APPLICATION_JSON_VALUE)
 public class FileController {
 
-	@Autowired
-	FileService fileService;
+	private FileService fileService;
+
+	public FileController(FileService fileService) {
+		this.fileService = fileService;
+	}
 
 	@PostMapping("/upload")
 	public ResponseEntity<String> uploadFile(@RequestBody MultipartFile file){

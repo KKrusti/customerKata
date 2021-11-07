@@ -1,6 +1,6 @@
-package com.mango.service;
+package com.customer.service;
 
-import com.mango.exceptions.MaximumSlogansException;
+import com.customer.exceptions.MaximumSlogansException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 

@@ -1,15 +1,17 @@
-package com.mango.service;
+package com.customer.service;
 
-import com.mango.model.User;
-import com.mango.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.customer.model.User;
+import com.customer.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
 
-	@Autowired
 	private UserRepository userRepository;
+
+	public UserService(UserRepository userRepository) {
+		this.userRepository = userRepository;
+	}
 
 	public User create(User user){
 		return userRepository.add(user);

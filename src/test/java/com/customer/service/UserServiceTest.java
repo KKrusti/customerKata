@@ -1,12 +1,13 @@
-package com.mango.service;
+package com.customer.service;
 
-import com.mango.Application;
-import com.mango.model.User;
-import com.mango.repository.UserRepository;
+import com.customer.Application;
+import com.customer.model.User;
+import com.customer.repository.UserRepository;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
@@ -14,11 +15,16 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @SpringBootTest(classes = {UserService.class, Application.class})
 public class UserServiceTest {
 
-	@Autowired
 	private UserService userService;
 
-	@Autowired
-	private UserRepository userRepository;
+	@Mock
+	UserRepository userRepository;
+
+	@BeforeEach
+	void setUp() {
+		userRepository = new UserRepository();
+		userService = new UserService(userRepository);
+	}
 
 	private static final int USER_ID = 1;
 

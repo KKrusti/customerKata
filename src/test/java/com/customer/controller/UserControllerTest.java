@@ -1,9 +1,9 @@
-package com.mango.controller;
+package com.customer.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mango.model.User;
-import com.mango.service.UserService;
+import com.customer.model.User;
+import com.customer.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
