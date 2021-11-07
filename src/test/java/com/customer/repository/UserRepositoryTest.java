@@ -26,6 +26,10 @@ public class UserRepositoryTest {
 
 		assertNotNull(savedUser);
 		assertEquals("Eren", savedUser.getName());
+		assertEquals("Jaegger", savedUser.getSurname());
+		assertEquals("shiganshima", savedUser.getStreet());
+		assertEquals("RoseWall", savedUser.getCity());
+		assertEquals("shingekinokyojin@manga.com", savedUser.getEmail());
 	}
 
 }
