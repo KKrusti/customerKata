@@ -26,11 +26,26 @@ public class UserService {
 
 	public User saveUser(User user) {
 		checkTermsAndConditions(user);
-		return userMapper.toDomain(save(user));
+		return userMapper.toDomain(
+			userRepository.save(userMapper.toEntity(user)));
 	}
 
-	public User updateUser(User user) {
-		return userMapper.toDomain(save(user));
+	public User updateUser(Long userId, User user) {
+		return userRepository.findById(userId)
+			.map(userEntity -> {
+				updateUserFromEntity(userEntity, user);
+				return userMapper.toDomain(userRepository.save(userEntity));
+			})
+			.orElseThrow(
+				() -> new UserNotFoundException(userId));
+	}
+
+	private void updateUserFromEntity(UserEntity userEntity, User user) {
+		userEntity.setName(user.getName());
+		userEntity.setSurname(user.getSurname());
+		userEntity.setStreet(user.getStreet());
+		userEntity.setCity(user.getCity());
+		userEntity.setEmail(user.getEmail());
 	}
 
 	private void checkTermsAndConditions(User user) {
@@ -38,9 +53,4 @@ public class UserService {
 			throw new TermsAndConditionsNotAcceptedException();
 		}
 	}
-
-	private UserEntity save(User user) {
-		return userRepository.save(userMapper.toEntity(user));
-	}
-
 }

@@ -17,9 +17,9 @@ class UserRepositoryTest {
 	private UserRepository userRepository;
 
 	@Test
-	@Sql("/schema.sql")
-	void should_create_user(){
-		var userEntity= TestData.getUserEntity();
+	@Sql("/data/schema.sql")
+	void should_create_user() {
+		var userEntity = TestData.getUserEntity();
 
 		UserEntity savedUser = userRepository.save(userEntity);
 
@@ -29,6 +29,22 @@ class UserRepositoryTest {
 		assertEquals("shiganshima", savedUser.getStreet());
 		assertEquals("RoseWall", savedUser.getCity());
 		assertEquals("shingekinokyojin@manga.com", savedUser.getEmail());
+	}
+
+	@Test
+	@Sql({"/data/schema.sql",
+		"/data/insert_1_user.sql"})
+	void should_update_user() {
+		var userEntity = TestData.getUserEntity("new Street");
+
+		var updatedUser = userRepository.save(userEntity);
+
+		assertNotNull(updatedUser);
+		assertEquals("Eren", updatedUser.getName());
+		assertEquals("Jaegger", updatedUser.getSurname());
+		assertEquals("shiganshima", updatedUser.getStreet());
+		assertEquals("new Street", updatedUser.getCity());
+		assertEquals("shingekinokyojin@manga.com", updatedUser.getEmail());
 	}
 
 }

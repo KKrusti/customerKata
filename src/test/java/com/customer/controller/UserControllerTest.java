@@ -57,7 +57,7 @@ class UserControllerTest {
 	void should_update_user() {
 		var user = TestData.getUser();
 		user.setCity("new city");
-		when(this.userService.updateUser(user)).thenReturn(user);
+		when(this.userService.updateUser(USER_ID, user)).thenReturn(user);
 
 		ResponseEntity<Void> response = userController.updateUser(user);
 

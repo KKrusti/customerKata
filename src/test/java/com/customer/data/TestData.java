@@ -19,24 +19,32 @@ public class TestData {
 	}
 
 	public static User getUser() {
+		return getUser("RoseWall");
+	}
+
+	public static User getUser(String city) {
 		return User.builder()
 			.id(USER_ID)
 			.name("Eren")
 			.surname("Jaegger")
 			.street("shiganshima")
-			.city("RoseWall")
+			.city(city)
 			.email("shingekinokyojin@manga.com")
 			.agreedTermsAndConditions(true)
 			.build();
 	}
 
 	public static UserEntity getUserEntity() {
+		return getUserEntity("RoseWall");
+	}
+
+	public static UserEntity getUserEntity(String city) {
 		return UserEntity.builder()
 			.id(USER_ID)
 			.name("Eren")
 			.surname("Jaegger")
 			.street("shiganshima")
-			.city("RoseWall")
+			.city(city)
 			.email("shingekinokyojin@manga.com")
 			.build();
 	}
