@@ -1,5 +1,6 @@
 package com.customer.controller.exception;
 
+import com.customer.exceptions.MaximumSlogansException;
 import com.customer.exceptions.TermsAndConditionsNotAcceptedException;
 import com.customer.exceptions.UserNotFoundException;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -38,6 +39,13 @@ public class ExceptionHandling extends ResponseEntityExceptionHandler {
 		HttpServletRequest request, Exception ex) {
 
 		return createErrorResponseEntity(ex, request, HttpStatus.NOT_FOUND);
+	}
+
+	@ExceptionHandler(MaximumSlogansException.class)
+	public ResponseEntity<ApiError> handleMaximumSlogansException(
+		HttpServletRequest request, Exception ex) {
+
+		return createErrorResponseEntity(ex, request, HttpStatus.FORBIDDEN);
 	}
 
 	private ResponseEntity<ApiError> createErrorResponseEntity(Exception ex,
