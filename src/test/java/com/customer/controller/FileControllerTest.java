@@ -1,6 +1,6 @@
 package com.customer.controller;
 
-import com.customer.service.FileService;
+import com.customer.service.SloganService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +16,11 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(FileController.class)
+@WebMvcTest(SloganController.class)
 public class FileControllerTest {
 
 	@MockBean
-	private FileService mockFileService;
+	private SloganService mockSloganService;
 
 	@Autowired
 	private MockMvc mvc;
@@ -31,9 +31,9 @@ public class FileControllerTest {
 			null, "test data".getBytes());
 		String response = "File uploaded successfully";
 
-		when(mockFileService.uploadFile(file)).thenReturn(response);
+		when(mockSloganService.uploadFile(file)).thenReturn(response);
 
-		mvc.perform(post("/v1/files/upload")
+		mvc.perform(post("/v1/slogan/upload")
 			.contentType(MediaType.APPLICATION_JSON)
 			.content("File uploaded successfully"))
 			.andExpect(status().isOk());

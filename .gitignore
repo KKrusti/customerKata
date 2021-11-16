@@ -43,7 +43,7 @@ nbproject/private/
 /build/reports/tests/test/packages/com.customer.repository.html
 /build/reports/tests/test/classes/com.customer.repository.UserRepositoryTest.html
 /build/reports/tests/test/packages/com.customer.service.html
-/build/reports/tests/test/classes/com.customer.service.UserServiceTest.html
+/build/reports/tests/test/classes/com.customer.service.addUserTest.html
 /build/libs/customerKata-1.0-SNAPSHOT.jar
 /build/classes/java/main/com/customer/controller/exception/ExceptionHandling.class
 /build/classes/java/main/com/customer/controller/FileController.class
@@ -70,7 +70,7 @@ nbproject/private/
 /build/test-results/test/TEST-com.customer.controller.FileControllerTest.xml
 /build/test-results/test/TEST-com.customer.controller.UserControllerTest.xml
 /build/test-results/test/TEST-com.customer.repository.UserRepositoryTest.xml
-/build/test-results/test/TEST-com.customer.service.UserServiceTest.xml
+/build/test-results/test/TEST-com.customer.service.addUserTest.xml
 /build/classes/java/test/com/customer/data/TestData.class
 /build/classes/java/main/com/customer/model/User$UserBuilder.class
 /build/classes/java/main/com/customer/model/User.class

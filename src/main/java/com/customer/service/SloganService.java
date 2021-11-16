@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
-public class FileService {
+public class SloganService {
 
 	public String uploadFile(MultipartFile file) throws MaximumSlogansException {
 		//logic goes here

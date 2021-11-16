@@ -27,6 +27,9 @@ dependencies {
         'com.h2database:h2:1.4.192',
         "org.mapstruct:mapstruct:${gradle.mapstructVersion}",
         "org.springframework.boot:spring-boot-starter-data-jpa",
+        'javax.validation:validation-api:2.0.1.Final',
+        "io.springfox:springfox-swagger2:${gradle.springfoxVersion}",
+        "io.springfox:springfox-swagger-ui:${gradle.springfoxVersion}",
         'javax.persistence:javax.persistence-api:2.2')
     compileOnly "org.projectlombok:lombok:${gradle.lombokVersion}"
     annotationProcessor(

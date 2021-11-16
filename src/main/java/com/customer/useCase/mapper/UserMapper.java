@@ -1,7 +1,7 @@
-package com.customer.service;
+package com.customer.useCase.mapper;
 
 import com.customer.entity.UserEntity;
-import com.customer.model.User;
+import com.customer.domain.User;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
