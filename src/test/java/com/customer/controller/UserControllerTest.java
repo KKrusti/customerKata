@@ -1,62 +1,67 @@
 package com.customer.controller;
 
 import com.customer.data.TestData;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.customer.domain.User;
 import com.customer.service.UserService;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
+import org.mockito.Mock;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.web.servlet.MockMvc;
 
+import static com.customer.data.TestData.USER_ID;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(UserController.class)
 class UserControllerTest {
 
-	@MockBean
-	private UserService mockUserService;
+	@Mock
+	private UserService userService;
 
-	@Autowired
-	private MockMvc mvc;
+	private UserController userController;
 
-	@Test
-	void withUserData_createUser_userCreated() throws Exception{
-		User user = TestData.getUser();
-
-		when(mockUserService.saveUser(user)).thenReturn(user);
-
-		mvc.perform(post("/v1/users")
-			.contentType(MediaType.APPLICATION_JSON)
-			.content(createdUserInJson(user)))
-			.andExpect(status().isCreated());
+	@BeforeEach
+	void setUp() {
+		this.userController = new UserController(this.userService);
 	}
 
 	@Test
-	void withUserData_updateUser_userUpdated() throws Exception {
+	void should_add_user() {
+		var user = TestData.getUserWithNoId();
+		when(this.userService.saveUser(user)).thenReturn(user);
+
+		ResponseEntity<User> response = this.userController.createUser(user);
+
+		assertNotNull(response);
+		assertEquals(HttpStatus.CREATED, response.getStatusCode());
+		assertEquals(user, response.getBody());
+	}
+
+	@Test
+	void should_return_user() {
+		var user = TestData.getUser();
+		when(this.userService.getUser(user.getId())).thenReturn(user);
+
+		ResponseEntity<User> response = this.userController.getUser(USER_ID);
+
+		assertNotNull(response);
+		assertEquals(HttpStatus.OK, response.getStatusCode());
+		assertEquals(user, response.getBody());
+	}
+
+	@Test
+	void should_update_user() {
 		var user = TestData.getUser();
 		user.setCity("new city");
+		when(this.userService.updateUser(user)).thenReturn(user);
 
-		when(mockUserService.saveUser(user)).thenReturn(user);
+		ResponseEntity<Void> response = userController.updateUser(user);
 
-		mvc.perform(put("/v1/users")
-			.contentType(MediaType.APPLICATION_JSON)
-			.content(createdUserInJson(user)))
-			.andExpect(status().isOk());
+		assertNotNull(response);
+		assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
 	}
-
-	private static String createdUserInJson(User user) throws JsonProcessingException {
-		ObjectMapper mapper = new ObjectMapper();
-		return mapper.writeValueAsString(user);
-	}
-
 }

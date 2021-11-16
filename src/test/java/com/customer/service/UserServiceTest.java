@@ -1,28 +1,26 @@
 package com.customer.service;
 
-import com.customer.Application;
 import com.customer.data.TestData;
+import com.customer.domain.User;
 import com.customer.entity.UserEntity;
 import com.customer.exceptions.TermsAndConditionsNotAcceptedException;
-import com.customer.domain.User;
 import com.customer.exceptions.UserNotFoundException;
 import com.customer.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(classes = {UserService.class, Application.class})
 class UserServiceTest {
 
 	private UserService userService;
@@ -38,7 +36,7 @@ class UserServiceTest {
 	}
 
 	@Test
-	void should_crate_a_new_user(){
+	void should_crate_a_new_user() {
 		User user = TestData.getUser();
 		UserEntity userEntity = TestData.getUserEntity();
 		when(userMapper.toEntity(user)).thenReturn(userEntity);
@@ -61,12 +59,12 @@ class UserServiceTest {
 	}
 
 	@Test
-	void should_throw_exception_when_no_terms_and_conditions_agreed(){
+	void should_throw_exception_when_no_terms_and_conditions_agreed() {
 		User user = TestData.getUser();
 		user.setAgreedTermsAndConditions(false);
 
 		assertThrows(TermsAndConditionsNotAcceptedException.class,
-			()-> userService.saveUser(user));
+			() -> userService.saveUser(user));
 	}
 
 }

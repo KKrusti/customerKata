@@ -5,7 +5,12 @@ import com.customer.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/v1/users", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -18,19 +23,19 @@ public class UserController {
 	}
 
 	@PostMapping
-	public ResponseEntity<User> createUser(@RequestBody User user){
+	public ResponseEntity<User> createUser(@RequestBody User user) {
 		User createdUser = userService.saveUser(user);
 		return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
 	}
 
 	@PutMapping
-	public ResponseEntity<User> updateUser(@RequestBody User user) {
-		var updatedUser = userService.saveUser(user);
-		return ResponseEntity.ok(updatedUser);
+	public ResponseEntity<Void> updateUser(@RequestBody User user) {
+		userService.saveUser(user);
+		return ResponseEntity.noContent().build();
 	}
 
 	@GetMapping
-	public ResponseEntity<User> getUser(@RequestBody Long id){
+	public ResponseEntity<User> getUser(@RequestBody Long id) {
 		var user = userService.getUser(id);
 		return ResponseEntity.ok(user);
 	}

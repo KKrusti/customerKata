@@ -2,7 +2,6 @@ package com.customer.controller.exception;
 
 import com.customer.exceptions.TermsAndConditionsNotAcceptedException;
 import com.customer.exceptions.UserNotFoundException;
-import com.customer.exceptions.UserUnprocessableException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -25,13 +24,6 @@ public class ExceptionHandling extends ResponseEntityExceptionHandler {
 		HttpServletRequest request, Exception ex) {
 
 		return createErrorResponseEntity(ex, request, HttpStatus.INTERNAL_SERVER_ERROR);
-	}
-
-	@ExceptionHandler(UserUnprocessableException.class)
-	public ResponseEntity<ApiError> handleUserUnprocessableException(
-		HttpServletRequest request, Exception ex) {
-
-		return createErrorResponseEntity(ex, request, HttpStatus.UNPROCESSABLE_ENTITY);
 	}
 
 	@ExceptionHandler(TermsAndConditionsNotAcceptedException.class)
