@@ -3,7 +3,7 @@ package com.customer.controller;
 import com.customer.data.TestData;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.customer.model.User;
+import com.customer.domain.User;
 import com.customer.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(UserController.class)
-public class UserControllerTest {
+class UserControllerTest {
 
 	@MockBean
 	private UserService mockUserService;
@@ -30,10 +30,10 @@ public class UserControllerTest {
 	private MockMvc mvc;
 
 	@Test
-	public void withUserData_createUser_userCreated() throws Exception{
+	void withUserData_createUser_userCreated() throws Exception{
 		User user = TestData.getUser();
 
-		when(mockUserService.saveOrUpdate(user)).thenReturn(user);
+		when(mockUserService.saveUser(user)).thenReturn(user);
 
 		mvc.perform(post("/v1/users")
 			.contentType(MediaType.APPLICATION_JSON)
@@ -42,11 +42,11 @@ public class UserControllerTest {
 	}
 
 	@Test
-	public void withUserData_updateUser_userUpdated() throws Exception {
+	void withUserData_updateUser_userUpdated() throws Exception {
 		var user = TestData.getUser();
 		user.setCity("new city");
 
-		when(mockUserService.saveOrUpdate(user)).thenReturn(user);
+		when(mockUserService.saveUser(user)).thenReturn(user);
 
 		mvc.perform(put("/v1/users")
 			.contentType(MediaType.APPLICATION_JSON)

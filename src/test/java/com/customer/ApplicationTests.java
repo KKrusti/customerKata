@@ -1,8 +1,8 @@
 package com.customer;
 
-import com.customer.controller.FileController;
+import com.customer.controller.SloganController;
 import com.customer.controller.UserController;
-import com.customer.service.FileService;
+import com.customer.service.SloganService;
 import com.customer.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,23 +15,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-public class ApplicationTests {
+class ApplicationTests {
 
 	private UserController userController;
-	private FileController fileController;
+	private SloganController fileController;
 	@Mock
 	private UserService userService;
 	@Mock
-	private FileService fileService;
+	private SloganService sloganService;
 
 	@BeforeEach
-	public void setUp() {
+	void setUp() {
 		userController = new UserController(userService);
-		fileController = new FileController(fileService);
+		fileController = new SloganController(sloganService);
 	}
 
 	@Test
-	public void contextLoads(){
+	void contextLoads(){
 		assertThat(userController).isNotNull();
 		assertThat(fileController).isNotNull();
 	}

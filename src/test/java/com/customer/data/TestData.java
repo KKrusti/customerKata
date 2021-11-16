@@ -1,7 +1,7 @@
 package com.customer.data;
 
 import com.customer.entity.UserEntity;
-import com.customer.model.User;
+import com.customer.domain.User;
 
 public class TestData {
 
@@ -15,6 +15,7 @@ public class TestData {
 			.street("shiganshima")
 			.city("RoseWall")
 			.email("shingekinokyojin@manga.com")
+			.agreedTermsAndConditions(true)
 			.build();
 	}
 

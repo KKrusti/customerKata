@@ -1,6 +1,6 @@
 package com.customer.controller;
 
-import com.customer.service.FileService;
+import com.customer.service.SloganService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,24 +16,23 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(FileController.class)
-public class FileControllerTest {
+@WebMvcTest(SloganController.class)
+class FileControllerTest {
 
 	@MockBean
-	private FileService mockFileService;
+	private SloganService mockSloganService;
 
 	@Autowired
 	private MockMvc mvc;
 
 	@Test
-	public void withNoMaxSlogans_upload_uploaded() throws Exception {
-		MockMultipartFile file = new MockMultipartFile("user-file", "test.txt",
-			null, "test data".getBytes());
+	void withNoMaxSlogans_upload_uploaded() throws Exception {
+		String slogan = "";
 		String response = "File uploaded successfully";
 
-		when(mockFileService.uploadFile(file)).thenReturn(response);
+		when(mockSloganService.uploadFile(slogan)).thenReturn(response);
 
-		mvc.perform(post("/v1/files/upload")
+		mvc.perform(post("/v1/slogan/upload")
 			.contentType(MediaType.APPLICATION_JSON)
 			.content("File uploaded successfully"))
 			.andExpect(status().isOk());

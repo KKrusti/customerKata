@@ -1,7 +1,7 @@
 package com.customer.service;
 
 import com.customer.entity.UserEntity;
-import com.customer.model.User;
+import com.customer.domain.User;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

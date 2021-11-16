@@ -1,5 +1,7 @@
 package com.customer.controller.exception;
 
+import com.customer.exceptions.TermsAndConditionsNotAcceptedException;
+import com.customer.exceptions.UserNotFoundException;
 import com.customer.exceptions.UserUnprocessableException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,6 +32,20 @@ public class ExceptionHandling extends ResponseEntityExceptionHandler {
 		HttpServletRequest request, Exception ex) {
 
 		return createErrorResponseEntity(ex, request, HttpStatus.UNPROCESSABLE_ENTITY);
+	}
+
+	@ExceptionHandler(TermsAndConditionsNotAcceptedException.class)
+	public ResponseEntity<ApiError> handleTermsAndConditionsNotAcceptedException(
+		HttpServletRequest request, Exception ex) {
+
+		return createErrorResponseEntity(ex, request, HttpStatus.BAD_REQUEST);
+	}
+
+	@ExceptionHandler(UserNotFoundException.class)
+	public ResponseEntity<ApiError> handleUserNotFoundException(
+		HttpServletRequest request, Exception ex) {
+
+		return createErrorResponseEntity(ex, request, HttpStatus.NOT_FOUND);
 	}
 
 	private ResponseEntity<ApiError> createErrorResponseEntity(Exception ex,

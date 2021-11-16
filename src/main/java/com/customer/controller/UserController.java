@@ -1,6 +1,6 @@
 package com.customer.controller;
 
-import com.customer.model.User;
+import com.customer.domain.User;
 import com.customer.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,13 +19,19 @@ public class UserController {
 
 	@PostMapping
 	public ResponseEntity<User> createUser(@RequestBody User user){
-		User createdUser = userService.saveOrUpdate(user);
+		User createdUser = userService.saveUser(user);
 		return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
 	}
 
 	@PutMapping
 	public ResponseEntity<User> updateUser(@RequestBody User user) {
-		var updatedUser = userService.saveOrUpdate(user);
+		var updatedUser = userService.saveUser(user);
 		return ResponseEntity.ok(updatedUser);
+	}
+
+	@GetMapping
+	public ResponseEntity<User> getUser(@RequestBody Long id){
+		var user = userService.getUser(id);
+		return ResponseEntity.ok(user);
 	}
 }

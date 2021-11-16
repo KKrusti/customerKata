@@ -1,4 +1,4 @@
-package com.customer.model;
+package com.customer.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,5 +17,6 @@ public class User {
 	private String street;
 	private String city;
 	private String email;
+	private boolean agreedTermsAndConditions;
 
 }
