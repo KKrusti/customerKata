@@ -9,7 +9,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class Slogan {
 
-	private Long sloganId;
+	private Long id;
 	private Long customerId;
-	private String slogan;
+	private String sloganText;
 }

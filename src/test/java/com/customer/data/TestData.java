@@ -1,6 +1,8 @@
 package com.customer.data;
 
+import com.customer.domain.Slogan;
 import com.customer.domain.User;
+import com.customer.entity.SloganEntity;
 import com.customer.entity.UserEntity;
 
 public class TestData {
@@ -49,4 +51,23 @@ public class TestData {
 			.build();
 	}
 
+	public static Slogan getSlogan() {
+		return getSlogan(null);
+	}
+
+	public static Slogan getSlogan(Long id) {
+		return Slogan.builder()
+			.id(id)
+			.customerId(1L)
+			.sloganText("Shinzou sasageyo")
+			.build();
+	}
+
+	public static SloganEntity getSloganEntity() {
+		return SloganEntity.builder()
+			.id(1L)
+			.customerId(1L)
+			.slogan("Shinzou sasageyo")
+			.build();
+	}
 }

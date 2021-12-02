@@ -1,4 +1,4 @@
-package com.customer.service;
+package com.customer.service.mapper;
 
 import com.customer.data.TestData;
 import com.customer.domain.User;
@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class UserMapperTest {
+class UserMapperTest {
 
 	private UserMapper mapper = Mappers.getMapper(UserMapper.class);
 

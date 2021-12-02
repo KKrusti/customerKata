@@ -25,8 +25,8 @@ create table SLOGAN
     ID          NUMBER not null
         constraint PK_SLOGAN
             primary key,
-    CUSTOMER_ID NUMBER,
-    SLOGAN      NVARCHAR2(240),
+    CUSTOMER_ID NVARCHAR2(240),
+    SLOGAN      NVARCHAR2(240)
 );
 
 create sequence SLOGAN_SEQ

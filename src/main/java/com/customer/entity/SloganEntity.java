@@ -26,7 +26,8 @@ public class SloganEntity {
 		sequenceName = "SLOGAN_SEQ",
 		allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SLOGAN_GENERATOR")
-	private Long sloganId;
+	private Long id;
+
 	private Long customerId;
 	private String slogan;
 

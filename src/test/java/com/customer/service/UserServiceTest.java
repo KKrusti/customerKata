@@ -5,6 +5,7 @@ import com.customer.entity.UserEntity;
 import com.customer.exceptions.TermsAndConditionsNotAcceptedException;
 import com.customer.exceptions.UserNotFoundException;
 import com.customer.repository.UserRepository;
+import com.customer.service.mapper.UserMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

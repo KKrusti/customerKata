@@ -1,4 +1,4 @@
-package com.customer.service;
+package com.customer.service.mapper;
 
 import com.customer.domain.User;
 import com.customer.entity.UserEntity;

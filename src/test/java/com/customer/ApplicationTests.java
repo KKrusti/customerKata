@@ -2,6 +2,7 @@ package com.customer;
 
 import com.customer.controller.SloganController;
 import com.customer.controller.UserController;
+import com.customer.controller.mapper.SloganDTOMapper;
 import com.customer.service.SloganService;
 import com.customer.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,15 +24,17 @@ class ApplicationTests {
 	private UserService userService;
 	@Mock
 	private SloganService sloganService;
+	@Mock
+	private SloganDTOMapper sloganDTOMapper;
 
 	@BeforeEach
 	void setUp() {
 		userController = new UserController(userService);
-		fileController = new SloganController(sloganService);
+		fileController = new SloganController(sloganService, sloganDTOMapper);
 	}
 
 	@Test
-	void contextLoads(){
+	void contextLoads() {
 		assertThat(userController).isNotNull();
 		assertThat(fileController).isNotNull();
 	}

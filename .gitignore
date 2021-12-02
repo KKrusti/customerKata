@@ -36,7 +36,7 @@ nbproject/private/
 /build/reports/tests/test/css/base-style.css
 /build/resources/main/META-INF/build-info.properties
 /build/reports/tests/test/classes/com.customer.ApplicationTests.html
-/build/reports/tests/test/classes/com.customer.controller.FileControllerTest.html
+/build/reports/tests/test/classes/com.customer.controller.SloganControllerTest.html
 /build/reports/tests/test/packages/com.customer.controller.html
 /build/reports/tests/test/classes/com.customer.controller.UserControllerTest.html
 /build/reports/tests/test/packages/com.customer.html
@@ -67,7 +67,7 @@ nbproject/private/
 /build/reports/tests/test/css/style.css
 /build/jacoco/test.exec
 /build/test-results/test/TEST-com.customer.ApplicationTests.xml
-/build/test-results/test/TEST-com.customer.controller.FileControllerTest.xml
+/build/test-results/test/TEST-com.customer.controller.SloganControllerTest.xml
 /build/test-results/test/TEST-com.customer.controller.UserControllerTest.xml
 /build/test-results/test/TEST-com.customer.repository.UserRepositoryTest.xml
 /build/test-results/test/TEST-com.customer.service.UserServiceTest.xml

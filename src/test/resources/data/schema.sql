@@ -17,6 +17,7 @@ create sequence CUSTOMER_INFO_SEQ
     start with 1
     increment by 1 cache 100;
 
+
 drop table SLOGAN if exists;
 drop sequence SLOGAN_SEQ if exists;
 
@@ -26,7 +27,7 @@ create table SLOGAN
         constraint PK_SLOGAN
             primary key,
     CUSTOMER_ID NUMBER,
-    SLOGAN      NVARCHAR2(240),
+    SLOGAN      NVARCHAR2(240)
 );
 
 create sequence SLOGAN_SEQ
