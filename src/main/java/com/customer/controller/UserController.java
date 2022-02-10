@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping(value = "/v1/users", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -35,7 +36,7 @@ public class UserController {
 	}
 
 	@GetMapping
-	public ResponseEntity<User> getUser(@RequestBody Long id) {
+	public ResponseEntity<User> getUser(@RequestParam Long id) {
 		var user = userService.getUser(id);
 		return ResponseEntity.ok(user);
 	}

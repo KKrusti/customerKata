@@ -1,7 +1,7 @@
 pluginManagement {
     resolutionStrategy {
         eachPlugin {
-            if ( requested.id.id == 'org.springframework.boot' ) {
+            if (requested.id.id == 'org.springframework.boot') {
                 gradle.ext {
                     springBootVersion = '2.2.1.RELEASE'
                     springCloudVersion = 'Hoxton.SR2'
@@ -9,7 +9,7 @@ pluginManagement {
                     lombokVersion = '1.18.22'
                     mapstructVersion = '1.4.2.Final'
                 }
-                useModule( "org.springframework.boot:spring-boot-gradle-plugin:${gradle.springBootVersion}" )
+                useModule("org.springframework.boot:spring-boot-gradle-plugin:${gradle.springBootVersion}")
             }
         }
     }
@@ -18,4 +18,4 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'customerKata'
+rootProject.name = 'customerkata'
