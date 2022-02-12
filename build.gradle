@@ -36,7 +36,11 @@ dependencies {
         "org.mapstruct:mapstruct-processor:${gradle.mapstructVersion}")
     testImplementation(
         'org.springframework.boot:spring-boot-starter-test:2.5.5',
+        "io.rest-assured:rest-assured:4.1.1",
+        "io.rest-assured:json-path:4.0.0",
         'org.junit.jupiter:junit-jupiter-api',
+        "io.rest-assured:xml-path:4.0.0",
+        'io.micrometer:micrometer-core:1.8.2',
         "org.mapstruct:mapstruct-processor:${gradle.mapstructVersion}",
         "com.h2database:h2:1.4.192")
 }
