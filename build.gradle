@@ -28,6 +28,7 @@ dependencies {
         "org.mapstruct:mapstruct:${gradle.mapstructVersion}",
         "org.springframework.boot:spring-boot-starter-data-jpa",
         "io.springfox:springfox-boot-starter:${gradle.springfoxVersion}",
+        'javax.validation:validation-api:2.0.1.Final',
         'javax.persistence:javax.persistence-api:2.2')
     compileOnly "org.projectlombok:lombok:${gradle.lombokVersion}"
     annotationProcessor(

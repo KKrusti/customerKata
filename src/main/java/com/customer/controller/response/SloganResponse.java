@@ -7,9 +7,8 @@ import lombok.Value;
 @Value
 @Builder
 @AllArgsConstructor
-public class SloganDTO {
-
-	Long id;
+public class SloganResponse {
+	long id;
 	String customerId;
 	String slogan;
 }
