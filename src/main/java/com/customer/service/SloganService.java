@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 public class SloganService {
 	private static final int MAXIMUM_ALLOWED_SLOGANS = 3;
 
-	private SloganRepository sloganRepository;
-	private SloganMapper sloganMapper;
+	private final SloganRepository sloganRepository;
+	private final SloganMapper sloganMapper;
 
 	public SloganService(SloganRepository sloganRepository, SloganMapper sloganMapper) {
 		this.sloganRepository = sloganRepository;
@@ -28,7 +28,7 @@ public class SloganService {
 	private void isMaximumReached(Long customerId) {
 		var slogansByCustomer = sloganRepository.findByCustomerId(customerId);
 		slogansByCustomer.ifPresent(sloganEntities -> {
-			if (sloganEntities.size() <= MAXIMUM_ALLOWED_SLOGANS) {
+			if (sloganEntities.size() >= MAXIMUM_ALLOWED_SLOGANS) {
 				throw new MaximumSlogansException(customerId);
 			}
 		});
