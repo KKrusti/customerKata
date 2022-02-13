@@ -9,6 +9,7 @@ import org.springframework.test.context.jdbc.Sql;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DataJpaTest
 class UserRepositoryTest {
@@ -29,6 +30,7 @@ class UserRepositoryTest {
 		assertEquals("shiganshima", savedUser.getStreet());
 		assertEquals("RoseWall", savedUser.getCity());
 		assertEquals("shingekinokyojin@manga.com", savedUser.getEmail());
+		assertTrue(savedUser.isTermsAndConditions());
 	}
 
 	@Test
@@ -45,6 +47,7 @@ class UserRepositoryTest {
 		assertEquals("shiganshima", updatedUser.getStreet());
 		assertEquals("new Street", updatedUser.getCity());
 		assertEquals("shingekinokyojin@manga.com", updatedUser.getEmail());
+		assertTrue(updatedUser.isTermsAndConditions());
 	}
 
 }

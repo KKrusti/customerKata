@@ -6,11 +6,12 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
-public interface UserMapper {
+public interface UserEntityMapper {
 
-	@Mapping(target = "agreedTermsAndConditions", constant = "true")
+	@Mapping(target = "agreedTermsAndConditions", source = "termsAndConditions")
 	User toDomain(UserEntity userEntity);
 
+	@Mapping(target = "termsAndConditions", source = "agreedTermsAndConditions")
 	UserEntity toEntity(User user);
 
 }

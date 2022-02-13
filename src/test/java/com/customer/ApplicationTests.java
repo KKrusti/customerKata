@@ -2,7 +2,8 @@ package com.customer;
 
 import com.customer.controller.SloganController;
 import com.customer.controller.UserController;
-import com.customer.controller.mapper.SloganDTOMapper;
+import com.customer.controller.mapper.SloganMapper;
+import com.customer.controller.mapper.UserMapper;
 import com.customer.service.SloganService;
 import com.customer.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,12 +26,14 @@ class ApplicationTests {
 	@Mock
 	private SloganService sloganService;
 	@Mock
-	private SloganDTOMapper sloganDTOMapper;
+	private SloganMapper sloganMapper;
+	@Mock
+	private UserMapper userMapper;
 
 	@BeforeEach
 	void setUp() {
-		userController = new UserController(userService);
-		fileController = new SloganController(sloganService, sloganDTOMapper);
+		userController = new UserController(userService, userMapper);
+		fileController = new SloganController(sloganService, sloganMapper);
 	}
 
 	@Test

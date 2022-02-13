@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 class UserMapperTest {
 
-	private UserMapper mapper = Mappers.getMapper(UserMapper.class);
+	private final UserEntityMapper mapper = Mappers.getMapper(UserEntityMapper.class);
 
 	@Test
 	void should_map_from_domain_to_entity() {

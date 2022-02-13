@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
-public interface SloganDTOMapper {
+public interface SloganMapper {
 
 	@Mapping(source = "text", target = "sloganText")
 	Slogan toDomain(SloganRequest sloganRequest);

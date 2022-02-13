@@ -5,37 +5,37 @@ import com.customer.entity.UserEntity;
 import com.customer.exceptions.TermsAndConditionsNotAcceptedException;
 import com.customer.exceptions.UserNotFoundException;
 import com.customer.repository.UserRepository;
-import com.customer.service.mapper.UserMapper;
+import com.customer.service.mapper.UserEntityMapper;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
 
 	private final UserRepository userRepository;
-	private final UserMapper userMapper;
+	private final UserEntityMapper userEntityMapper;
 
-	public UserService(UserRepository userRepository, UserMapper userMapper) {
+	public UserService(UserRepository userRepository, UserEntityMapper userEntityMapper) {
 		this.userRepository = userRepository;
-		this.userMapper = userMapper;
+		this.userEntityMapper = userEntityMapper;
 	}
 
 	public User getUser(Long userId) {
 		return this.userRepository.findById(userId)
-			.map(userMapper::toDomain)
+			.map(userEntityMapper::toDomain)
 			.orElseThrow(() -> new UserNotFoundException(userId));
 	}
 
 	public User saveUser(User user) {
 		checkTermsAndConditions(user);
-		return userMapper.toDomain(
-			userRepository.save(userMapper.toEntity(user)));
+		return userEntityMapper.toDomain(
+			userRepository.save(userEntityMapper.toEntity(user)));
 	}
 
 	public User updateUser(Long userId, User user) {
 		return userRepository.findById(userId)
 			.map(userEntity -> {
 				updateUserFromEntity(userEntity, user);
-				return userMapper.toDomain(userRepository.save(userEntity));
+				return userEntityMapper.toDomain(userRepository.save(userEntity));
 			})
 			.orElseThrow(
 				() -> new UserNotFoundException(userId));

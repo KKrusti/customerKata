@@ -1,7 +1,7 @@
 package com.customer.controller;
 
 import com.customer.controller.exception.ApiError;
-import com.customer.controller.mapper.SloganDTOMapper;
+import com.customer.controller.mapper.SloganMapper;
 import com.customer.controller.request.SloganRequest;
 import com.customer.controller.response.SloganResponse;
 import com.customer.domain.Slogan;
@@ -23,12 +23,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/v1/slogan", produces = MediaType.APPLICATION_JSON_VALUE)
 public class SloganController {
 
-	private SloganService sloganService;
-	private SloganDTOMapper sloganDTOMapper;
+	private final SloganService sloganService;
+	private final SloganMapper sloganMapper;
 
-	public SloganController(SloganService sloganService, SloganDTOMapper sloganDTOMapper) {
+	public SloganController(SloganService sloganService, SloganMapper sloganMapper) {
 		this.sloganService = sloganService;
-		this.sloganDTOMapper = sloganDTOMapper;
+		this.sloganMapper = sloganMapper;
 	}
 
 	@ApiOperation(value = "Create a slogan for a user")
@@ -39,7 +39,7 @@ public class SloganController {
 	@PostMapping("/upload")
 	@ResponseStatus(HttpStatus.CREATED)
 	public SloganResponse uploadSlogan(@RequestBody SloganRequest sloganRequest) {
-		Slogan response = sloganService.uploadSlogan(sloganDTOMapper.toDomain(sloganRequest));
-		return sloganDTOMapper.fromDomain(response);
+		Slogan response = sloganService.uploadSlogan(sloganMapper.toDomain(sloganRequest));
+		return sloganMapper.fromDomain(response);
 	}
 }

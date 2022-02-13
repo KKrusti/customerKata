@@ -1,5 +1,7 @@
 package com.customer.data;
 
+import com.customer.controller.request.UserRequest;
+import com.customer.controller.response.UserResponse;
 import com.customer.domain.Slogan;
 import com.customer.domain.User;
 import com.customer.entity.SloganEntity;
@@ -8,46 +10,75 @@ import com.customer.entity.UserEntity;
 public class TestData {
 
 	public static final Long USER_ID = 1L;
+	private static final String EMAIL = "shingekinokyojin@manga.com";
+	private static final String NAME = "Eren";
+	private static final String SURNAME = "Jaegger";
+	private static final String STREET = "shiganshima";
+	private static final String CITY = "RoseWall";
+
+	public static UserRequest getUserRequest() {
+		return UserRequest.builder()
+			.name(NAME)
+			.surname(SURNAME)
+			.street(STREET)
+			.city(CITY)
+			.email(EMAIL)
+			.agreedTermsAndConditions(true)
+			.build();
+	}
 
 	public static User getUserWithNoId() {
 		return User.builder()
-			.name("Eren")
-			.surname("Jaegger")
-			.street("shiganshima")
-			.city("RoseWall")
-			.email("shingekinokyojin@manga.com")
+			.name(NAME)
+			.surname(SURNAME)
+			.street(STREET)
+			.city(CITY)
+			.email(EMAIL)
+			.agreedTermsAndConditions(true)
+			.build();
+	}
+
+	public static UserResponse getUserResponse() {
+		return UserResponse.builder()
+			.id(1)
+			.name(NAME)
+			.surname(SURNAME)
+			.street(STREET)
+			.city(CITY)
+			.email(EMAIL)
 			.agreedTermsAndConditions(true)
 			.build();
 	}
 
 	public static User getUser() {
-		return getUser("RoseWall");
+		return getUser(CITY);
 	}
 
 	public static User getUser(String city) {
 		return User.builder()
 			.id(USER_ID)
-			.name("Eren")
-			.surname("Jaegger")
-			.street("shiganshima")
+			.name(NAME)
+			.surname(SURNAME)
+			.street(STREET)
 			.city(city)
-			.email("shingekinokyojin@manga.com")
+			.email(EMAIL)
 			.agreedTermsAndConditions(true)
 			.build();
 	}
 
 	public static UserEntity getUserEntity() {
-		return getUserEntity("RoseWall");
+		return getUserEntity(CITY);
 	}
 
 	public static UserEntity getUserEntity(String city) {
 		return UserEntity.builder()
 			.id(USER_ID)
-			.name("Eren")
-			.surname("Jaegger")
-			.street("shiganshima")
+			.name(NAME)
+			.surname(SURNAME)
+			.street(STREET)
 			.city(city)
-			.email("shingekinokyojin@manga.com")
+			.email(EMAIL)
+			.termsAndConditions(true)
 			.build();
 	}
 

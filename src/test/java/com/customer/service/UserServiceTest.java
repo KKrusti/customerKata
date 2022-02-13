@@ -5,7 +5,7 @@ import com.customer.entity.UserEntity;
 import com.customer.exceptions.TermsAndConditionsNotAcceptedException;
 import com.customer.exceptions.UserNotFoundException;
 import com.customer.repository.UserRepository;
-import com.customer.service.mapper.UserMapper;
+import com.customer.service.mapper.UserEntityMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,11 +30,11 @@ class UserServiceTest {
 	@Mock
 	private UserRepository userRepository;
 	@Mock
-	private UserMapper userMapper;
+	private UserEntityMapper userEntityMapper;
 
 	@BeforeEach
 	void setUp() {
-		userService = new UserService(userRepository, userMapper);
+		userService = new UserService(userRepository, userEntityMapper);
 	}
 
 	@Test
@@ -42,9 +42,9 @@ class UserServiceTest {
 		var user = TestData.getUserWithNoId();
 		var expectedUser = TestData.getUser();
 		UserEntity userEntity = TestData.getUserEntity();
-		when(userMapper.toEntity(user)).thenReturn(userEntity);
+		when(userEntityMapper.toEntity(user)).thenReturn(userEntity);
 		when(userRepository.save(userEntity)).thenReturn(userEntity);
-		when(userMapper.toDomain(userEntity)).thenReturn(expectedUser);
+		when(userEntityMapper.toDomain(userEntity)).thenReturn(expectedUser);
 
 		var createdUser = userService.saveUser(user);
 
@@ -56,7 +56,7 @@ class UserServiceTest {
 	void should_update_user() {
 		var user = TestData.getUser("new City");
 		var userEntity = TestData.getUserEntity();
-		when(userMapper.toDomain(userEntity)).thenReturn(user);
+		when(userEntityMapper.toDomain(userEntity)).thenReturn(user);
 		when(userRepository.findById(1L)).thenReturn(Optional.of(userEntity));
 		when(userRepository.save(any(UserEntity.class))).thenReturn(userEntity);
 		var expectedUserEntity = TestData.getUserEntity("new City");

@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
-public interface SloganMapper {
+public interface SloganEntityMapper {
 
 	@Mapping(source = "sloganText", target = "slogan")
 	SloganEntity toEntity(Slogan slogan);
